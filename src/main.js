@@ -6,9 +6,11 @@ import PageTwo from "./components/PageTwo";
 import PageThree from "./components/PageThree";
 import PageFour from "./components/PageFour";
 import Detail from "./components/Detail";
+import MyNear from "./components/MyNear";
 import ElementUI from 'element-ui';
 import { Tabbar, TabItem } from 'mint-ui';
 import BootstrapVue from 'bootstrap-vue'
+
 
 import 'element-ui/lib/theme-chalk/index.css';
 import './assets/css/iconfont.css'
@@ -23,6 +25,15 @@ Vue.use(BootstrapVue)
 Vue.config.productionTip = false
 const routes = [
   { path: '/one', component: PageOne },
+  { path: '/my-near', component:MyNear,
+    children:[
+       {
+         path:"two",
+         component:PageTwo
+       }
+    ]
+
+  },
   { path: '/two', component: PageTwo },
   { path: '/three', component: PageThree },
   { path: '/four', component: PageFour },
