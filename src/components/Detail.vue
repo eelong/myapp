@@ -1,86 +1,90 @@
 <template>
-    <div>
+    <div >
         <!--<div v-if="show"><img src="../assets/sample.jpg"></div>-->
-        <div class="panel header-section">
-            <div class="back-group filter" style="position: absolute;height: 15rem">
-                <div style="background-color: #FFFFFF;width: 100%;height: 100%;opacity: 0.95">
+        <div style="position: relative" class="header" ref="header" :style="{height:defaultHeaderHeight}">
+            <img-zoom v-on:updateHeight="sendHeight"   v-on:endHeight="touchEnd">
+                <img  class="bgimg" src="../assets/bg5.jpg">
+            </img-zoom>
+            <div  class="fix-content" ref="fix-content" :style="{height:defaultHeaderHeight}"  >
+                <div class="fix-content-child">
+                <el-row>
+                    <div class="header-img">
+                        <img  src="../assets/bg5.jpg">
+                    </div>
+                </el-row>
+                <el-row>
+                    <div class="attr">
+                        <span class="value my-name">哎呦累</span>
+                        <mt-badge color="#B0B4BD" size="normal" style="color: #ffffff;font-size: 0.8rem;font-weight: 300;height: 0.8rem;line-height: 0.8rem!important;">VIP</mt-badge>
+                    </div>
+                </el-row>
+                <el-row>
+                    <div class="attr">
+                        <span  class="value">27 / 176 cm / 65 kg <mt-badge color="#B0B4BD" size="small" style="line-height: 0.8rem;color: #ffffff;padding-left: 0.5rem;padding-right: 0.5rem">~</mt-badge></span>
+                    </div>
+                </el-row>
+                <el-row>
+                    <div class="attr">
+                        <span class="value"> "瞎聊呗"</span>
+                    </div>
+                </el-row>
+                <el-row style="color: #ffffff;">
+
+                    <div style="margin: 0 auto;width: 65%;font-size: 0.7rem">
+                        <el-col :span="7">
+                            <div class="badge-space">
+                                <div class="first">
+                                    <span class="iconfont icon-shijian"></span>
+                                </div>
+                                <div class="second">
+                                    <span>51秒前</span>
+                                </div>
+                            </div>
+                        </el-col>
+                        <el-col :span="7">
+                            <div class="badge-space">
+                                <div class="first">
+                                    <span class="iconfont icon-position-o"></span>
+                                </div>
+                                <div class="second">
+                                    <span>0.48km</span>
+                                </div>
+                            </div>
+
+                        </el-col>
+                        <el-col :span="10">
+                            <div class="badge-space">
+                                <div class="first">
+                                    <span class="iconfont icon-zhinan"></span>
+                                </div>
+                                <div class="second" >
+                                    <span>广东 深圳</span>
+                                </div>
+                            </div>
+
+                        </el-col>
+                    </div>
+                </el-row>
+                <el-row >
+                    <div class="attr" style="width: 50%;margin: 0.8rem auto;line-height: 2rem;height: 2rem">
+                        <el-col :span="12"><span style="color: #C2C2C2;">关注&nbsp;&nbsp;</span>4</el-col>
+                        <el-col :span="12"><span style="color: #C2C2C2;">粉丝&nbsp;&nbsp;</span>2</el-col>
+                    </div>
+                </el-row>
                 </div>
             </div>
-            <el-row>
-                <div class="header-img">
-                    <img  src="../assets/header_img/icon-test_6.png">
-                </div>
-            </el-row>
-          <el-row>
-                <div class="attr">
-                    <span class="value my-name">哎呦累</span>
-                    <mt-badge color="#B0B4BD" size="normal" style="color: #ffffff;font-size: 0.8rem;font-weight: 300;height: 0.8rem;line-height: 0.8rem!important;">VIP</mt-badge>
-                </div>
-            </el-row>
-            <el-row>
-                <div class="attr">
-                    <span  class="value">27 / 176 cm / 65 kg <mt-badge color="#B0B4BD" size="small" style="line-height: 0.8rem;color: #ffffff;padding-left: 0.5rem;padding-right: 0.5rem">~</mt-badge></span>
-                </div>
-            </el-row>
-            <el-row>
-                <div class="attr">
-                    <span class="value"> "瞎聊呗"</span>
-                </div>
-            </el-row>
-            <el-row style="color: #ffffff;">
-
-                <div style="margin: 0 auto;width: 65%;font-size: 0.7rem">
-                    <el-col :span="7">
-                        <div class="badge-space">
-                            <div class="first">
-                                <span class="iconfont icon-shijian"></span>
-                            </div>
-                            <div class="second">
-                                <span>51秒前</span>
-                            </div>
-                        </div>
-                    </el-col>
-                    <el-col :span="7">
-                        <div class="badge-space">
-                            <div class="first">
-                                <span class="iconfont icon-position-o"></span>
-                            </div>
-                            <div class="second">
-                                <span>0.48km</span>
-                            </div>
-                        </div>
-
-                    </el-col>
-                    <el-col :span="10">
-                        <div class="badge-space">
-                            <div class="first">
-                                <span class="iconfont icon-zhinan"></span>
-                            </div>
-                            <div class="second" >
-                                <span>广东 深圳</span>
-                            </div>
-                        </div>
-
-                    </el-col>
-                </div>
-            </el-row>
-            <el-row >
-                <div class="attr" style="width: 50%;margin: 0.8rem auto;line-height: 2rem;height: 2rem">
-                    <el-col :span="12"><span style="color: #C2C2C2;">关注&nbsp;&nbsp;</span>4</el-col>
-                    <el-col :span="12"><span style="color: #C2C2C2;">粉丝&nbsp;&nbsp;</span>2</el-col>
-                </div>
-            </el-row>
         </div>
+
         <div style="margin-top: 0.5rem">
             <mt-navbar v-model="selected">
                 <mt-tab-item :id="1">
-                    <span class="iconfont icon-tupian"> </span>
+                    <span class="iconfont icon-pic-line"> </span>
                 </mt-tab-item>
                 <mt-tab-item :id="2">
-                    <span class="iconfont">&#xe6fa; </span>
+                    <span class="iconfont icon-iconset0351"></span>
                 </mt-tab-item>
                 <mt-tab-item :id="3">
-                    <span class="iconfont">&#xe659; </span>
+                    <span class="iconfont icon-wode"> </span>
                 </mt-tab-item>
             </mt-navbar>
             <div style="margin-bottom: 0.5rem"></div>
@@ -126,12 +130,26 @@
 </template>
 
 <script>
+    import ImgZoom from "../command/ImgZoom"
     export default {
         name: "Detail",
         data:function(){
             return {
                 selected:1,
-                show:false
+                show:false,
+                defaultHeaderHeight:"250px"
+            }
+        },
+        methods:{
+            sendHeight(height){
+                this.$refs['header'].classList.remove('heightback');
+                this.$refs['fix-content'].classList.remove('heightback');
+                this.defaultHeaderHeight = height
+            },
+            touchEnd(){
+               this.$refs['header'].classList.add('heightback');
+               this.$refs['fix-content'].classList.add('heightback');
+               this.defaultHeaderHeight = "250px"
             }
         },
         computed:{
@@ -139,6 +157,9 @@
                 let w =  document.body.clientWidth
                 return (w/3) + "px"
             }
+        },
+        components:{
+            ImgZoom
         }
     }
 </script>
@@ -147,7 +168,25 @@
     .back-group {
         overflow: hidden;
         height: 16rem;
-        background:url(../assets/bg.jpg)
+    }
+    .fix-content{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+        top: 0;
+        background-color:#fffdfd;
+        text-align: center;
+        opacity: 0.9;
+    }
+    .fix-content-child{
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        left: 0;
+    /*    background-color:#fffdfd;*/
+        text-align: center;
+        opacity: 0.9;
     }
     .panel{
         background-color: #ffffff;
@@ -162,10 +201,13 @@
         padding-left: 0.8rem;
         padding-top: 0.8rem;
 
+
     }
     .header-img img{
         box-shadow: 0 0 5px 2px #d4d0d0;
         border-radius: 50%;
+        width: 4rem;
+        height: 4rem;
 
     }
     .attr span{
@@ -178,7 +220,7 @@
         text-align: left;
         color: #939393;
     }
-
+    .heightback{ transition: height 0.5s;}
     .panel >ul{
         padding: 0 !important;
         margin: 0;
@@ -242,6 +284,7 @@
     }
     .my-name{
         font-size: 1.5rem !important;
+        color: #222222 !important;
         vertical-align: middle;
         margin-right: 1rem;
     }
