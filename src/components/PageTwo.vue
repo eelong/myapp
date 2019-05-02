@@ -1,11 +1,11 @@
 <template>
-    <div>
+    <div style="height: 700px;">
         <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
             <div class="list-users">
                 <ul>
-                    <li :style="{height: liHeight}" :key="n" v-for="n in pageNum" >
+                    <li :style="{height: liHeight}"   @click="dispatchRoute(`/detail/${n}`)" :key="n" v-for="n in pageNum" >
                         <div  :style="{height: liDivHeight}" class="warp-div">
-                            <img src="../assets/header_img/icon-test_1.png">
+                            <img src="../assets/header_img/icon-test_2.png">
 
                         </div>
                     </li>
