@@ -1,49 +1,16 @@
 <template>
-    <div style="height: 700px;">
+    <div>
         <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
             <div class="list-users">
                 <ul>
                     <li :style="{height: liHeight}"   @click="dispatchRoute(`/detail/${n}`)" :key="n" v-for="n in pageNum" >
                         <div  :style="{height: liDivHeight}" class="warp-div">
                             <img src="../assets/header_img/icon-test_2.png">
+                            <div style="position: relative;bottom: 20px;right: 0px">{{n}}</div>
 
                         </div>
                     </li>
                 </ul>
-      <!--  <el-row v-for="n in round" >
-            <el-col :span="6" :row="n">
-                <div  @click="dispatchRoute(`/detail/${n}`)" >
-                    <div class="face-img" :style="{height:faceHeight}">
-                        <img  src="../assets/header_img/icon-test.png">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </el-col>
-            <el-col :span="6">
-                <div>
-                    <div class="face-img" :style="{height:faceHeight}">
-                        <img src="../assets/header_img/icon-test_1.png">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </el-col>
-            <el-col :span="6">
-                <div>
-                    <div class="face-img" :style="{height:faceHeight}">
-                        <img src="../assets/header_img/icon-test_2.png">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </el-col>
-            <el-col :span="6">
-                <div>
-                    <div class="face-img" :style="{height:faceHeight}">
-                        <img src="../assets/header_img/icon-test_3.png">
-                        <div class="circle"></div>
-                    </div>
-                </div>
-            </el-col>
-        </el-row>-->
         </div>
         </mescroll-vue>
 
@@ -61,11 +28,11 @@
             return {
                 page:'Page Two',
                 mescroll: null, // mescroll实例对象
-                pageNum:8,
+                pageNum:35,
                 mescrollDown:{
                     callback: this.upCallback,
                     //htmlContent:"<p class=\"downwarp-progress\"></p><p class=\"downwarp-tip\">abcdfe</p>",
-                    use:false,
+                    use:true,
                     auto:true,
                     autoShowLoading:true,
                     onMoving:function(a,b,c){
@@ -87,8 +54,11 @@
 
                 mescrollUp:{
                     callback: this.downCallback,
-                    noMoreSize:0,
-                    offset:200
+                    noMoreSize:5,
+                    offset:200,
+                    onScroll:function(a,b,v){
+                        console.log(b,v)
+                    }
 
                 },
                 dataList:[]
@@ -109,7 +79,7 @@
                 setTimeout(function(){
                     mescroll.endSuccess(10)
                     console.log("下拉结束执行回调")
-                },2000)
+                },0)
 
             },
             downCallback(page,mescroll){
@@ -119,8 +89,9 @@
                     mescroll.endSuccess(10)
                     vm.pageNum += 8
                     console.log(vm.round)
+                   console.log( mescroll.getScrollHeight())
                     console.log("上拉结束执行回调")
-                },2000)
+                },0)
             }
         },
         watch:{
@@ -180,5 +151,12 @@
         bottom: 5px;
         right: 5px;
         border-radius: 50%;
+    }
+
+    .mescroll {
+        position: fixed;
+        top: 3rem;
+        bottom: 4rem;
+        height: auto;
     }
 </style>

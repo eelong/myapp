@@ -1,6 +1,6 @@
 <template>
     <div id="app">
-        <div style="margin-bottom: 4rem">
+        <div>
         <router-view></router-view>
         </div>
         <div>
@@ -27,7 +27,7 @@
                 pickerValue:"2019-04-22",
                 rangeValue:0,
                 tags:[
-                    {name:'身边',icon:waimai,id:'my-near',route:'/my-near'},
+                    {name:'身边',icon:waimai,id:'my-near',route:'/my-near/two'},
                     {name:'消息',icon:dingdan,id:'order',route:'/two'},
                     {name:'发现',icon:fanxian,id:'found',route:'/three'},
                     {name:'直播',icon:wode,id:'my',route:'/four'},

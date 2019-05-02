@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div style="position: relative;height: 3rem">
+        <div>
             <el-row style="background-color: #ffffff;position: fixed;width: 100%;z-index: 100">
                 <el-col :span="3" style="height: 3rem;line-height: 3rem;vertical-align: middle;text-align: center">
                     <span class="icon iconfont " style="font-size: 2rem;">&#xe7c9;</span>
