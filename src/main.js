@@ -7,6 +7,7 @@ import PageThree from "./components/PageThree";
 import PageFour from "./components/PageFour";
 import Detail from "./components/Detail";
 import MyNear from "./components/MyNear";
+import Canvas from "./components/Canvas";
 import ElementUI from 'element-ui';
 import { Tabbar, TabItem } from 'mint-ui';
 import BootstrapVue from 'bootstrap-vue'
@@ -37,7 +38,8 @@ const routes = [
   { path: '/two', component: PageTwo },
   { path: '/three', component: PageThree },
   { path: '/four', component: PageFour },
-  { path: '/detail/:id', component: Detail }
+  { path: '/detail/:id', component: Detail },
+  { path: '/canvas', component: Canvas },
 ]
 
 // 3. 创建 router 实例，然后传 `routes` 配置

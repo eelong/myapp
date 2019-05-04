@@ -31,7 +31,7 @@
                     {name:'消息',icon:dingdan,id:'order',route:'/two'},
                     {name:'发现',icon:fanxian,id:'found',route:'/three'},
                     {name:'直播',icon:wode,id:'my',route:'/four'},
-                    {name:'我的',icon:wode,id:'order',route:'/one'},
+                    {name:'我的',icon:wode,id:'canvas',route:'/canvas'},
                 ]
             }
         },
