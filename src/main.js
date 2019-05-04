@@ -9,6 +9,7 @@ import Detail from "./components/Detail";
 import MyNear from "./components/MyNear";
 import Canvas from "./components/Canvas";
 import ElementUI from 'element-ui';
+import  Vuex from "vuex"
 import { Tabbar, TabItem } from 'mint-ui';
 import BootstrapVue from 'bootstrap-vue'
 
@@ -18,6 +19,7 @@ import './assets/css/iconfont.css'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
 Vue.use(MintUI)
+Vue.use(Vuex)
 Vue.use(ElementUI);
 Vue.use(VueRouter)
 Vue.component(Tabbar.name, Tabbar);
@@ -42,6 +44,13 @@ const routes = [
   { path: '/canvas', component: Canvas },
 ]
 
+const store = new Vuex.Store({
+  state:{
+    client_width: document.body.clientWidth,
+    client_height: document.body.clientHeight,
+  }
+})
+
 // 3. 创建 router 实例，然后传 `routes` 配置
 // 你还可以传别的配置参数, 不过先这么简单着吧。
 const router = new VueRouter({
@@ -50,5 +59,6 @@ const router = new VueRouter({
 
 new Vue({
   render: h => h(App),
-  router
+  router,
+  store
 }).$mount('#app')

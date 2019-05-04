@@ -99,7 +99,8 @@
         },
         computed:{
             liHeight(){
-                let w =  document.body.clientWidth
+                let w =  this.$store.state.client_width
+                console.log(w)
                 return ((w/4)) + "px"
             },
             liDivHeight(){

@@ -3,8 +3,8 @@
         <!--<div v-if="show"><img src="../assets/sample.jpg"></div>-->
 
 
-        <div style="height: 400px;">
-            <canvas id="canvas" width="600" height="600" style="border:solid black 1px;">
+        <div style="height: 900px;">
+            <canvas id="canvas" width="600" height="1200" style="border:solid black 1px;">
                 你的浏览器不支持 canvas 元素。
             </canvas>
             <br>
@@ -52,6 +52,7 @@
 
                 for (var i = 0; i < touches.length; i++) {
                     console.log("开始第 " + i + " 个触摸 ...");
+                    console.log(touches[i].screenX,touches[i].screenY)
                     this.ongoingTouches.push(this.copyTouch(touches[i]));
                     var color = this.colorForTouch(touches[i]);
                     ctx.beginPath();
@@ -74,6 +75,7 @@
 
                     if (idx >= 0) {
                         this.log("继续第 " + idx + "个触摸。");
+                        console.log(touches[i].screenX,touches[i].screenY)
                         ctx.beginPath();
                         this.log("ctx.moveTo(" + this.ongoingTouches[idx].pageX + ", " + this.ongoingTouches[idx].pageY + ");");
                         ctx.moveTo(this.ongoingTouches[idx].pageX, this.ongoingTouches[idx].pageY);
@@ -110,6 +112,7 @@
                         ctx.fillRect(touches[i].pageX - 4, touches[i].pageY - 4, 8, 8);
                         // 在终点画一个正方形
                         this.ongoingTouches.splice(idx, 1); // 用完后移除
+
                     } else {
                         this.log("无法确定要结束哪个触摸点。");
                     }

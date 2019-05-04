@@ -34,7 +34,7 @@
                         <el-col :span="7">
                             <div class="badge-space">
                                 <div class="first">
-                                    <span class="iconfont icon-shijian"></span>
+                                    <span class="iconfont icon-ico_home_committed"></span>
                                 </div>
                                 <div class="second">
                                     <span>51秒前</span>
@@ -44,7 +44,7 @@
                         <el-col :span="7">
                             <div class="badge-space">
                                 <div class="first">
-                                    <span class="iconfont icon-position-o"></span>
+                                    <span class="iconfont icon-position"></span>
                                 </div>
                                 <div class="second">
                                     <span>0.48km</span>
@@ -55,7 +55,7 @@
                         <el-col :span="10">
                             <div class="badge-space">
                                 <div class="first">
-                                    <span class="iconfont icon-zhinan"></span>
+                                    <span class="iconfont icon-faxian"></span>
                                 </div>
                                 <div class="second" >
                                     <span>广东 深圳</span>
@@ -78,10 +78,10 @@
         <div style="margin-top: 0.5rem">
             <mt-navbar v-model="selected">
                 <mt-tab-item :id="1">
-                    <span class="iconfont icon-pic-line"> </span>
+                    <span class="iconfont icon-pic-line-copy-copy"> </span>
                 </mt-tab-item>
                 <mt-tab-item :id="2">
-                    <span class="iconfont icon-iconset0351"></span>
+                    <span class="iconfont icon-iconset0351-copy"></span>
                 </mt-tab-item>
                 <mt-tab-item :id="3">
                     <span class="iconfont icon-wode"> </span>
@@ -265,8 +265,9 @@
     .badge-space{
         background-color: #b0b4bd;
         margin-right: 3px;
-        line-height: 1.2rem;
+        line-height: calc(100% + 9px);
         border-radius: 5%;
+        vertical-align: middle;
 
     }
 
