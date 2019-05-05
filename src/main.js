@@ -6,6 +6,7 @@ import PageTwo from "./components/PageTwo";
 import PageThree from "./components/PageThree";
 import PageFour from "./components/PageFour";
 import Detail from "./components/Detail";
+import ViewImage from "./components/ViewImage";
 import MyNear from "./components/MyNear";
 import Canvas from "./components/Canvas";
 import ElementUI from 'element-ui';
@@ -42,12 +43,22 @@ const routes = [
   { path: '/four', component: PageFour },
   { path: '/detail/:id', component: Detail },
   { path: '/canvas', component: Canvas },
+  { path: '/view-image', component: ViewImage },
 ]
 
 const store = new Vuex.Store({
   state:{
     client_width: document.body.clientWidth,
     client_height: document.body.clientHeight,
+    showBottomBar:true
+  },
+  getters:{
+    liHeight:state => ((state.client_width/4)) + "px",
+    liDivHeight:state => (((state.client_width/4))-4) + "px",
+    ClientHeight:state => state.client_height + "px"
+  },
+  mutations:{
+    bottomBar:(state,value) => state.showBottomBar = value
   }
 })
 

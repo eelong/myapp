@@ -7,7 +7,6 @@
                         <div  :style="{height: liDivHeight}" class="warp-div">
                             <img src="../assets/header_img/icon-test_2.png">
                             <div style="position: relative;bottom: 20px;right: 0px">{{n}}</div>
-
                         </div>
                     </li>
                 </ul>
@@ -21,6 +20,7 @@
 <script>
     import MescrollVue from 'mescroll.js/mescroll.vue'
     import 'mescroll.js/mescroll.min.css'
+    import {mapGetters} from 'vuex'
     import top from "../assets/logo.png"
     export default {
         name: "PageTwo",
@@ -57,9 +57,12 @@
                     noMoreSize:5,
                     offset:200,
                     onScroll:function(a,b,v){
-                        console.log(b,v)
+                       // console.log(b,v)
+                    },
+                    toTop:{
+                       // src:top,
+                      //  offset:1000
                     }
-
                 },
                 dataList:[]
             }
@@ -97,16 +100,17 @@
         watch:{
 
         },
-        computed:{
-            liHeight(){
+        computed:{//   ...mapState(['liHeight','liDivHeight'])
+          /*  liHeight(){
                 let w =  this.$store.state.client_width
                 console.log(w)
                 return ((w/4)) + "px"
             },
             liDivHeight(){
-                let w =  document.body.clientWidth
+                let w =  this.$store.state.client_width
                 return (((w/4))-4) + "px"
-            },
+            },*/
+            ...mapGetters(['liHeight','liDivHeight'])
         },
         components:{
             MescrollVue

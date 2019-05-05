@@ -91,7 +91,7 @@
             <mt-tab-container v-model="selected">
                 <mt-tab-container-item :id="1">
                     <div class="panel">
-                        <ul>
+                        <ul @click="dispathRoute">
                             <li :style="{height:faceHeight}">
                                 <div><img src="../assets/bg_2.jpg"></div>
                             </li>
@@ -150,6 +150,11 @@
                this.$refs['header'].classList.add('heightback');
                this.$refs['fix-content'].classList.add('heightback');
                this.defaultHeaderHeight = "250px"
+            },
+            dispathRoute(e){
+                let target = e.target
+                this.$store.commit("bottomBar",false)
+                this.$router.push({path:"/view-image",query : { src:target.src }} )
             }
         },
         computed:{
