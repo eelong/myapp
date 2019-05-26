@@ -93,6 +93,10 @@
             toCanvans(){
                 const change = new chancerand();
                 const imageBox = document.querySelector('#'+this.idName);
+
+                Array.from(imageBox.querySelectorAll(":not(.dust)")).map(el => {
+                    el.classList.remove("slowShow");
+                });
                 html2canvas(imageBox,{
                     allowTaint: 0,
                     useCORS: true,

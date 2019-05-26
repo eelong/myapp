@@ -181,9 +181,6 @@
             MieBa
         },
         mounted() {
-            setTimeout(()=>{
-                //this.list[2]['destory'] = false
-            },1000)
 
         }
     }
