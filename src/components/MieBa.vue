@@ -19,7 +19,11 @@
         },
         watch:{
             isDestory(value) {
-               if(value === false) this.toCanvans()
+               if(value === false) {
+                   this.$nextTick(()=> {
+                       this.toCanvans()
+                   })
+               }
                else{
                    const imageBox = document.querySelector('#'+this.idName);
                    Array.from(imageBox.querySelectorAll(":not(.dust)")).map(el => {
@@ -114,7 +118,7 @@
                     const pixelArr = imageData.data
                     const data = pixelArr.slice(0).fill(0);
 //创建透明图像数组的个数，不能太小也不能太大hh。
-                    const canvasCount = 30
+                    const canvasCount = 25
 //将透明图像数组复制多个
                     const imageDataArray = Array.from({ length: canvasCount }, () =>
                         data.slice(0)
