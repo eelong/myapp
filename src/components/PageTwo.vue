@@ -3,13 +3,24 @@
         <mescroll-vue ref="mescroll" :down="mescrollDown" :up="mescrollUp" @init="mescrollInit">
             <div class="list-users">
                 <ul>
-                    <li :style="{height: liHeight}"   @click="dispatchRoute(`/detail/${n}`)" :key="n" v-for="n in pageNum" >
-                        <div  :style="{height: liDivHeight}" class="warp-div">
-                            <img src="../assets/header_img/icon-test_2.png">
-                            <div style="position: relative;bottom: 20px;right: 0px">{{n}}</div>
-                        </div>
+                    <li :style="{height: liHeight}"   @click="dispatchRoute(`/detail/${item.id}`)" :key="item.id" v-for="item in list" >
+                        <MieBa :isDestory="item.destory" :id-name="`image-${item.id}`">
+                            <div  :style="{height: liDivHeight}" class="warp-div">
+                                <img src="../assets/header_img/icon-test_2.png">
+                                <div style="position: relative;bottom: 20px;right: 0px">{{item.id}}</div>
+                            </div>
+                        </MieBa>
                     </li>
                 </ul>
+                <div :style="{position: 'fixed',bottom: this.$store.getters.fixMiddleHeight,right:'1rem','box-shadow': '1px 1px 5px #888888','border-radius':'50%'}">
+                    <div :class="{thanosDestory:destory,thanosBack:back, thanosBackhover:isBack,thanosDestoryhover:isDestory}"  ref="anthos" @click="thanos"></div>
+                    <audio  ref="music-destory" style="width: 200px;height: 50px">
+                        <source  src="../assets/thanos_snap_sound.b746c7d7.mp3" type="audio/mp3">
+                    </audio>
+                    <audio  ref="music-back" style="width: 200px;height: 50px">
+                        <source  src="../assets/thanos_dust_1.ad4820bd.mp3" type="audio/mp3">
+                    </audio>
+                </div>
         </div>
         </mescroll-vue>
 
@@ -21,14 +32,42 @@
     import MescrollVue from 'mescroll.js/mescroll.vue'
     import 'mescroll.js/mescroll.min.css'
     import {mapGetters} from 'vuex'
+    import MieBa from './MieBa'
     import top from "../assets/logo.png"
+    import chancerand from 'chance'
+    const chance = new chancerand()
     export default {
         name: "PageTwo",
         data:function () {
             return {
+                destoryNum:6,
+                destory:false,
+                back:true,
+                isDestory:false,
+                isBack:false,
                 page:'Page Two',
                 mescroll: null, // mescroll实例对象
-                pageNum:35,
+                pageNum:4,
+                startId:5,
+                list:[
+                    {
+                        id:1,
+                        img:'',
+                        destory:true,
+                    },
+                    {  id:2,
+                        img:'',
+                        destory:true
+                    },
+                    {  id:3,
+                        img:'',
+                        destory:true
+                    },
+                    {  id:4,
+                        img:'',
+                        destory:true
+                    }
+                ],
                 mescrollDown:{
                     callback: this.upCallback,
                     //htmlContent:"<p class=\"downwarp-progress\"></p><p class=\"downwarp-tip\">abcdfe</p>",
@@ -60,15 +99,36 @@
                        // console.log(b,v)
                     },
                     toTop:{
-                       // src:top,
-                      //  offset:1000
+                       /* src:top,
+                        offset:-200*/
                     }
                 },
-                dataList:[]
+                dataList:[],
+                chance:chance
             }
 
         },
         methods:{
+            thanos(){
+                this.destory = !this.destory
+                this.back = !this.back
+                this.isDestory = this.destory
+                this.isBack = this.back
+                if(this.destory){
+                    console.log("....")
+                    this.$refs['music-destory'].play()
+                    for(let i=0;i<this.destoryNum;i++){
+                        let rand = this.chance.integer({min:0,max:this.list.length-1})
+                        this.list[rand].destory = false
+                    }
+                }
+                if(this.back){
+                    this.$refs['music-back'].play()
+                    for(let item of this.list){
+                        item.destory = true
+                    }
+                }
+            },
             dispatchRoute(route){
                 this.$router.push(route)
             },
@@ -87,39 +147,100 @@
             },
             downCallback(page,mescroll){
                 console.log("上拉执行回调")
-                let vm = this
-                setTimeout(function(){
-                    mescroll.endSuccess(10)
-                    vm.pageNum += 8
-                    console.log(vm.round)
-                   console.log( mescroll.getScrollHeight())
-                    console.log("上拉结束执行回调")
-                },0)
+                setTimeout(() => {
+                    for(let i=0;i<8;i++){
+                        let data = {
+                            id:this.startId,
+                            img:'',
+                            destory:true
+                        }
+                        this.list.push(data)
+                        this.startId++
+                    }
+                    console.log(this.startId)
+                    if(this.startId >= 28){
+                        mescroll.endSuccess(5)
+                    }else{
+                        mescroll.endSuccess(10)
+                    }
+                },500)
+
             }
         },
         watch:{
 
         },
-        computed:{//   ...mapState(['liHeight','liDivHeight'])
-          /*  liHeight(){
-                let w =  this.$store.state.client_width
-                console.log(w)
-                return ((w/4)) + "px"
-            },
-            liDivHeight(){
-                let w =  this.$store.state.client_width
-                return (((w/4))-4) + "px"
-            },*/
+        computed:{
             ...mapGetters(['liHeight','liDivHeight'])
         },
         components:{
-            MescrollVue
+            MescrollVue,
+            MieBa
+        },
+        mounted() {
+            setTimeout(()=>{
+                //this.list[2]['destory'] = false
+            },1000)
+
         }
     }
 </script>
 
-<style scoped>
+<style >
 
+    .thanosDestory{
+        background-position: 0 0;
+        height: 80px;
+        width: 77px;
+        background-image: url("../assets/thanos_snap.3a36d79c.png");
+        animation-direction: normal;
+        animation-iteration-count: inherit;
+        animation-duration: 2.8s;
+        animation-fill-mode: none;
+        animation-timing-function: steps(47);
+    }
+
+    .thanosBack{
+        background-position: 0 0;
+        height: 80px;
+        width: 77px;
+        background-image: url("../assets/thanos_reverse.41a10553.png");
+        animation-direction: normal;
+        animation-iteration-count: 1;
+        animation-duration: 2.8s;
+        animation-fill-mode: backwards;
+        animation-timing-function: steps(47);
+    }
+
+    .thanosBackhover{
+        animation-name: thanosback;
+    }
+
+    .thanosDestoryhover {
+       animation-name: thanos;
+    }
+
+    @keyframes thanosback {
+        0% {
+            background-position: 0 0
+        }
+
+        to {
+            background-position: -3760px 0
+        }
+    }
+    @keyframes thanos {
+        0% {
+            background-position: 0 0
+        }
+
+        to {
+            background-position: -3760px 0
+        }
+    }
+    .mescroll-totop{
+        bottom: 20rem !important;
+    }
     .list-users ul{
         list-style-type: none;
         width: 100%;

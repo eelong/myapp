@@ -10,6 +10,7 @@ import ViewImage from "./components/ViewImage";
 import MyNear from "./components/MyNear";
 import Canvas from "./components/Canvas";
 import ElementUI from 'element-ui';
+
 import  Vuex from "vuex"
 import { Tabbar, TabItem } from 'mint-ui';
 import BootstrapVue from 'bootstrap-vue'
@@ -19,6 +20,7 @@ import 'element-ui/lib/theme-chalk/index.css';
 import './assets/css/iconfont.css'
 import MintUI from 'mint-ui'
 import 'mint-ui/lib/style.css'
+
 Vue.use(MintUI)
 Vue.use(Vuex)
 Vue.use(ElementUI);
@@ -54,6 +56,7 @@ const store = new Vuex.Store({
   },
   getters:{
     liHeight:state => ((state.client_width/4)) + "px",
+    fixMiddleHeight:state => ((state.client_height/2)) + "px",
     liDivHeight:state => (((state.client_width/4))-4) + "px",
     ClientHeight:state => state.client_height + "px"
   },
