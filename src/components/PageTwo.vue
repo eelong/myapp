@@ -40,7 +40,7 @@
         name: "PageTwo",
         data:function () {
             return {
-                destoryNum:6,
+                destoryNum:4,
                 destory:false,
                 back:true,
                 isDestory:false,
@@ -119,7 +119,10 @@
                     this.$refs['music-destory'].play()
                     for(let i=0;i<this.destoryNum;i++){
                         let rand = this.chance.integer({min:0,max:this.list.length-1})
-                        this.list[rand].destory = false
+                        setTimeout( () => {
+                            this.list[rand].destory = false
+                        },1500*i)
+
                     }
                 }
                 if(this.back){

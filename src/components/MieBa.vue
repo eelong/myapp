@@ -1,6 +1,6 @@
 <template>
     <div class="content-mieba">
-        <div :id='idName' ref="toimage-mieba" >
+        <div :id='idName' >
             <slot></slot>
         </div>
     </div>
@@ -21,7 +21,6 @@
             isDestory(value) {
                if(value === false) this.toCanvans()
                else{
-                   console.log(55)
                    const imageBox = document.querySelector('#'+this.idName);
                    Array.from(imageBox.querySelectorAll(":not(.dust)")).map(el => {
                        el.classList.remove("quickFade");
@@ -151,7 +150,9 @@
                     }
 
                     Array.from(imageBox.querySelectorAll(":not(.dust)")).map(el => {
+                        el.classList.remove("slowShow");
                         el.classList.add("quickFade");
+
                     });
                     console.log("over ...")
                 })
